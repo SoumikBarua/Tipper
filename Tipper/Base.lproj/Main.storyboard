@@ -64,6 +64,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="H7Q-lz-E5d"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -73,11 +76,21 @@
                             <outletCollection property="gestureRecognizers" destination="iGJ-Pf-onh" appends="YES" id="SnP-ZW-HKd"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="billAmountTextField" destination="OSd-Qi-6W0" id="csT-7J-AoO"/>
+                        <outlet property="tipAmountSegmentedControl" destination="CbE-qN-3w8" id="0iz-Dh-z6T"/>
+                        <outlet property="tipPercentageLabel" destination="czh-lt-CXT" id="cZA-Mm-1XK"/>
+                        <outlet property="totalLabel" destination="0UA-oe-Phz" id="KDb-45-hB8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="iGJ-Pf-onh"/>
+                <tapGestureRecognizer id="iGJ-Pf-onh">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="lhr-i5-aPa"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
+            <point key="canvasLocation" x="-180" y="143"/>
         </scene>
     </scenes>
 </document>
