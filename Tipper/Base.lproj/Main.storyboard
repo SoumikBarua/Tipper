@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogl-nc-vuZ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tipper-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tipper" customModuleProvider="target" sceneMemberID="viewController">
@@ -79,6 +79,13 @@
                             <outletCollection property="gestureRecognizers" destination="iGJ-Pf-onh" appends="YES" id="SnP-ZW-HKd"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Tipper" id="L3F-da-1ge">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="suw-Dc-dyg">
+                            <connections>
+                                <segue destination="sgn-si-7ty" kind="show" id="3Yr-Vr-tLb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="billAmountTextField" destination="OSd-Qi-6W0" id="csT-7J-AoO"/>
                         <outlet property="tipAmountSegmentedControl" destination="CbE-qN-3w8" id="0iz-Dh-z6T"/>
@@ -92,6 +99,53 @@
                         <action selector="onTap:" destination="BYZ-38-t0r" id="lhr-i5-aPa"/>
                     </connections>
                 </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="759.20000000000005" y="142.57871064467767"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="9w0-ZX-VEi">
+            <objects>
+                <tableViewController id="sgn-si-7ty" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="90C-l2-v1I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tF5-J6-YNS">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tF5-J6-YNS" id="6Kb-30-bha">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sgn-si-7ty" id="xEN-43-3vS"/>
+                            <outlet property="delegate" destination="sgn-si-7ty" id="EgM-tp-iYA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Hox-yc-apN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tq6-Vw-Yv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1487" y="143"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nvM-jy-Ts6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ogl-nc-vuZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZcP-Zg-KtU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Wt4-3v-Vda"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yO-FC-LT9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-180" y="142.57871064467767"/>
         </scene>
