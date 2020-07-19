@@ -18,10 +18,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // Launch app and start typing
+        billAmountTextField.becomeFirstResponder()
+        
+        // Label & textfield alignments
+        billAmountTextField.textAlignment = .right
+        tipPercentageLabel.textAlignment = .right
+        totalLabel.textAlignment = .right
     }
 
     @IBAction func onTap(_ sender: Any) {
-        
+        //
+        billAmountTextField.resignFirstResponder()
     }
     @IBAction func calculateTip(_ sender: Any) {
         // Get initial bill amount and calculate tips
