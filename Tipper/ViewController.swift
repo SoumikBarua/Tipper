@@ -25,10 +25,13 @@ class ViewController: UIViewController {
         billAmountTextField.textAlignment = .right
         tipPercentageLabel.textAlignment = .right
         totalLabel.textAlignment = .right
+        
+        // keyboard type
+        billAmountTextField.keyboardType = .decimalPad
     }
 
     @IBAction func onTap(_ sender: Any) {
-        //
+        // dismiss keyboard when background tapped
         billAmountTextField.resignFirstResponder()
     }
     @IBAction func calculateTip(_ sender: Any) {
