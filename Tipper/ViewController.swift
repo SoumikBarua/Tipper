@@ -29,26 +29,10 @@ class ViewController: UIViewController {
         // keyboard type
         billAmountTextField.keyboardType = .decimalPad
         
-        // check when the app was closed when last run
-        //print("right before lastRunDate")
-        if let lastRunDate = UserDefaults.standard.object(forKey: "lastRunTime") as? Date {
-            //print("Came here")
-            let interval = NSDateInterval(start: lastRunDate, end: Date())
-            if interval.duration < 600 { // less than 10 minutes pass since last closed
-                billAmountTextField.text = UserDefaults.standard.string(forKey: "billAmountTextField")
-            } else {
-                //print("duration longer")
-            }
-        }
+        // perform loading here
+        loadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UserDefaults.standard.set(billAmountTextField.text!, forKey: "billAmountTextField")
-        UserDefaults.standard.set(Date(), forKey: "lastRunTime")
-        UserDefaults.standard.synchronize() // force to update before closing
-        print("saved before disappear")
-    }
 
     @IBAction func onTap(_ sender: Any) {
         // dismiss keyboard when background tapped
@@ -66,6 +50,28 @@ class ViewController: UIViewController {
         // Update the tip and total labels
         tipPercentageLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+    }
+    
+    // helper methods
+    func saveData() {
+        //print("saveData attempt")
+        UserDefaults.standard.set(billAmountTextField.text, forKey: "billAmount")
+        UserDefaults.standard.set(Date(), forKey: "lastRunTime")
+        UserDefaults.standard.synchronize() // force to update before closing
+    }
+    
+    func loadData() {
+        // check when the app was closed when last run
+        //print("right before lastRunDate")
+        if let lastRunDate = UserDefaults.standard.object(forKey: "lastRunTime") as? Date {
+            //print("successfully retrieved date")
+            let interval = NSDateInterval(start: lastRunDate, end: Date())
+            if interval.duration < 600 { // less than 10 minutes pass since last closed
+                billAmountTextField.text = UserDefaults.standard.string(forKey: "billAmount") ?? ""
+            } else {
+                //print("duration longer")
+            }
+        }
     }
     
 }

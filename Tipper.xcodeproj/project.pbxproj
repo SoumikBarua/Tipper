@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		323B386224C7CD62001D1435 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323B386124C7CD62001D1435 /* SettingsViewController.swift */; };
 		32A626F624BE519E00EFC26A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F524BE519E00EFC26A /* AppDelegate.swift */; };
 		32A626F824BE519E00EFC26A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F724BE519E00EFC26A /* SceneDelegate.swift */; };
 		32A626FA24BE519E00EFC26A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F924BE519E00EFC26A /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		323B386124C7CD62001D1435 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		32A626F224BE519E00EFC26A /* Tipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A626F524BE519E00EFC26A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32A626F724BE519E00EFC26A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				32A626FE24BE51A000EFC26A /* Assets.xcassets */,
 				32A6270024BE51A000EFC26A /* LaunchScreen.storyboard */,
 				32A6270324BE51A000EFC26A /* Info.plist */,
+				323B386124C7CD62001D1435 /* SettingsViewController.swift */,
 			);
 			path = Tipper;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				32A626FA24BE519E00EFC26A /* ViewController.swift in Sources */,
 				32A626F624BE519E00EFC26A /* AppDelegate.swift in Sources */,
 				32A626F824BE519E00EFC26A /* SceneDelegate.swift in Sources */,
+				323B386224C7CD62001D1435 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

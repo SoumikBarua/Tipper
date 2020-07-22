@@ -105,7 +105,7 @@
         <!--Settings-->
         <scene sceneID="9w0-ZX-VEi">
             <objects>
-                <tableViewController id="sgn-si-7ty" sceneMemberID="viewController">
+                <tableViewController id="sgn-si-7ty" customClass="SettingsViewController" customModule="Tipper" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="90C-l2-v1I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,28 +113,56 @@
                         <sections>
                             <tableViewSection id="iqy-aB-Mwj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tF5-J6-YNS">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="tF5-J6-YNS">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tF5-J6-YNS" id="6Kb-30-bha">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgS-58-b5C">
-                                                    <rect key="frame" x="16" y="11.5" width="84" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgS-58-b5C">
+                                                    <rect key="frame" x="16" y="27" width="84" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nys-ob-gsa">
-                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJk-T2-efU">
+                                                    <rect key="frame" x="244" y="-70" width="115" height="216"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="115" id="dYC-BY-otH"/>
+                                                    </constraints>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WgS-58-b5C" firstAttribute="leading" secondItem="6Kb-30-bha" secondAttribute="leadingMargin" id="QGI-dJ-QEf"/>
+                                                <constraint firstItem="LJk-T2-efU" firstAttribute="trailing" secondItem="6Kb-30-bha" secondAttribute="trailingMargin" id="RZz-ho-amc"/>
+                                                <constraint firstItem="WgS-58-b5C" firstAttribute="centerY" secondItem="6Kb-30-bha" secondAttribute="centerY" id="nO2-cG-K8A"/>
+                                                <constraint firstItem="LJk-T2-efU" firstAttribute="centerY" secondItem="6Kb-30-bha" secondAttribute="centerY" id="qHL-M5-AnE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="65Q-As-9fU">
+                                        <rect key="frame" x="0.0" y="93" width="375" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65Q-As-9fU" id="d8Z-Xq-8bL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-t0-xDl">
+                                                    <rect key="frame" x="16" y="17" width="84" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hda-HP-NJ3">
+                                                    <rect key="frame" x="310" y="12" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Nys-ob-gsa" firstAttribute="centerY" secondItem="6Kb-30-bha" secondAttribute="centerY" id="4YH-Gc-Rcz"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Nys-ob-gsa" secondAttribute="trailing" id="PbL-ec-gIn"/>
-                                                <constraint firstItem="WgS-58-b5C" firstAttribute="leading" secondItem="6Kb-30-bha" secondAttribute="leadingMargin" id="QGI-dJ-QEf"/>
-                                                <constraint firstItem="WgS-58-b5C" firstAttribute="centerY" secondItem="6Kb-30-bha" secondAttribute="centerY" id="nO2-cG-K8A"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hda-HP-NJ3" secondAttribute="trailing" id="1Iy-4X-x3v"/>
+                                                <constraint firstItem="U3d-t0-xDl" firstAttribute="centerY" secondItem="d8Z-Xq-8bL" secondAttribute="centerY" id="VPX-Uc-R8f"/>
+                                                <constraint firstItem="hda-HP-NJ3" firstAttribute="centerY" secondItem="d8Z-Xq-8bL" secondAttribute="centerY" id="dM3-vS-aVx"/>
+                                                <constraint firstItem="U3d-t0-xDl" firstAttribute="leading" secondItem="d8Z-Xq-8bL" secondAttribute="leadingMargin" id="o0w-Us-hEo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -147,10 +175,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Hox-yc-apN"/>
+                    <connections>
+                        <outlet property="tipPicker" destination="LJk-T2-efU" id="eTg-8r-Oiz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tq6-Vw-Yv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="143"/>
+            <point key="canvasLocation" x="1485.5999999999999" y="142.57871064467767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nvM-jy-Ts6">
