@@ -13,7 +13,7 @@ The following **required** functionality is complete:
 * [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 
 The following **optional** features are implemented:
-* [ ] Settings page to change the default tip percentage.
+* [x] Settings page to change the default tip percentage.
 * [ ] UI animations
 * [x] Remembering the bill amount across app restarts (if <10mins)
 * [ ] Using locale-specific currency and currency thousands separators.
@@ -22,6 +22,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
+* [x] Using a slider to provide more flexibility in tip percentages compared to a segmented control
 
 ## Video Walkthrough 
 
@@ -33,7 +34,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+1. It was tricky to figure out where to call UserDefaults to save the bill amount in order to remember it for restarts <10 mins.
+2. The main screen updated the slider after coming back from the settings screen despite no changes in the default tip percentage. So I kept track of the default tip with a variable in main VC to see if it has changed from the last time.
 
 ## License
 

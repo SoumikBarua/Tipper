@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJz-Nm-oBy">
-                                <rect key="frame" x="20" y="237" width="116" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip (18.00%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJz-Nm-oBy">
+                                <rect key="frame" x="20" y="237" width="144" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -29,18 +29,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CbE-qN-3w8">
-                                <rect key="frame" x="20" y="284" width="339" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="15%"/>
-                                    <segment title="18%"/>
-                                    <segment title="20%"/>
-                                </segments>
-                                <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZLn-do-ZqW"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bill Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaz-iF-66l">
                                 <rect key="frame" x="20" y="101" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,6 +59,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18" minValue="15" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="eNu-4l-pKQ">
+                                <rect key="frame" x="14" y="291" width="347" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="s2p-5J-2th"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
@@ -88,8 +83,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billAmountTextField" destination="OSd-Qi-6W0" id="csT-7J-AoO"/>
-                        <outlet property="tipAmountSegmentedControl" destination="CbE-qN-3w8" id="0iz-Dh-z6T"/>
-                        <outlet property="tipPercentageLabel" destination="czh-lt-CXT" id="cZA-Mm-1XK"/>
+                        <outlet property="tipAmountLabel" destination="czh-lt-CXT" id="EbV-UN-smf"/>
+                        <outlet property="tipAmountSlider" destination="eNu-4l-pKQ" id="ywa-61-69k"/>
+                        <outlet property="tipPercentageLabel" destination="uJz-Nm-oBy" id="rwM-8A-grS"/>
                         <outlet property="totalLabel" destination="0UA-oe-Phz" id="KDb-45-hB8"/>
                     </connections>
                 </viewController>
@@ -127,7 +123,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJk-T2-efU">
-                                                    <rect key="frame" x="244" y="-70" width="115" height="216"/>
+                                                    <rect key="frame" x="244" y="-70.5" width="115" height="216"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="115" id="dYC-BY-otH"/>
                                                     </constraints>
