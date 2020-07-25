@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var billAmountTextField: UITextField!
     @IBOutlet weak var tipPercentageLabel: UILabel!
@@ -29,8 +29,9 @@ class ViewController: UIViewController {
         tipAmountLabel.textAlignment = .right
         totalLabel.textAlignment = .right
         
-        // keyboard type
+        // keyboard type & delegate
         billAmountTextField.keyboardType = .decimalPad
+        billAmountTextField.delegate = self
         
         // perform loading here
         loadData()
@@ -90,8 +91,25 @@ class ViewController: UIViewController {
         // Update the tip percentage, the tip amount and the total labels
         let formattedPercentage = String(format: "%.2f", tipAmountSlider.value)
         tipPercentageLabel.text = "Tips (" + formattedPercentage + "%)"
-        tipAmountLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        
+        let localCurrency = Locale.current.currencySymbol
+        tipAmountLabel.text = localCurrency! + String(format: "%.2f", tip)
+        totalLabel.text = localCurrency! + String(format: "%.2f", total)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Prevent entry of multiple decimal separators, ensure this based on locale-specific decimal separator
+        let currentLocale = Locale.current
+        let decimalSeparator = currentLocale.decimalSeparator ?? "."
+        
+        let existingTextHasDecimalSeparator = billAmountTextField.text?.range(of: decimalSeparator)
+        let replaceTextHasDecimalSeparator = string.range(of: decimalSeparator)
+        
+        if existingTextHasDecimalSeparator != nil, replaceTextHasDecimalSeparator != nil {
+            return false
+        } else {
+            return true
+        }
     }
     
 }

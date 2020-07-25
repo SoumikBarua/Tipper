@@ -51,6 +51,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDataSource, UIP
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Update UserDefaults to save default tip preference
         UserDefaults.standard.set(String(row), forKey: "tipPicker")
+        UserDefaults.standard.synchronize()
     }
 
 }
