@@ -27,14 +27,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
         print("sceneDidDisconnect - about to close")
         
-        let navigationController = window!.rootViewController as! UINavigationController
-        let controller = navigationController.viewControllers[0] as! ViewController
-        controller.saveData()
+        saveData()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        print("App became active")
+        
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller  = navigationController.viewControllers[0] as! ViewController
+        controller.updateTextField()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -53,10 +56,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
         print("sceneDidEnterBackground - pressed home button")
         
+        saveData()
+    }
+    
+    // Helper methods
+    func saveData() {
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! ViewController
         controller.saveData()
     }
+    
 
 
 }

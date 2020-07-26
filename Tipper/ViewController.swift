@@ -17,6 +17,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var totalLabel: UILabel!
     
     var lastDefaultTip = "3"
+    let numberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 2
+        return nf
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //print("saveData attempt")
         UserDefaults.standard.set(billAmountTextField.text, forKey: "billAmount")
         UserDefaults.standard.set(Date(), forKey: "lastRunTime")
+        UserDefaults.standard.set(Locale.current.decimalSeparator, forKey: "lastDecimalSeparator")
         UserDefaults.standard.synchronize() // force to update before closing
     }
     
@@ -74,6 +82,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let interval = NSDateInterval(start: lastRunDate, end: Date())
             if interval.duration < 600 { // less than 10 minutes pass since last closed
                 billAmountTextField.text = UserDefaults.standard.string(forKey: "billAmount") ?? ""
+                updateTextField()
             } else {
                 //print("duration longer")
             }
@@ -82,8 +91,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func updateLabels() {
         // Get initial bill amount and calculate tips
-        let bill = Double(billAmountTextField.text!) ?? 0
-        
+        var bill = 0.00
+        if let billText = billAmountTextField.text, let number = numberFormatter.number(from: billText) {
+            bill = number.doubleValue
+        }
+
         // Calculate tip and total
         let tip = bill * Double(tipAmountSlider.value/100)
         let total = bill + tip
@@ -109,6 +121,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return false
         } else {
             return true
+        }
+    }
+    
+    func updateTextField() {
+        // Check if the region settings has changed during a run
+        let lastDecimalSeparator = UserDefaults.standard.string(forKey: "lastDecimalSeparator") ?? "."
+        if lastDecimalSeparator != Locale.current.decimalSeparator {
+            if let currentText = billAmountTextField.text {
+                let oldChar = Character(lastDecimalSeparator)
+                let newChar = Character(Locale.current.decimalSeparator!)
+                var result = String()
+                for char in currentText {
+                    if char == oldChar {
+                        result.append(newChar)
+                    } else {
+                        result.append(char)
+                    }
+                }
+                billAmountTextField.text = result
+            }
         }
     }
     

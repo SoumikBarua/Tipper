@@ -23,7 +23,8 @@ The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
 * [x] Using a slider to provide more flexibility in tip percentages compared to a segmented control
-* [x] Prevent the user from entering more than one decimal separator in the bill amount text field.
+* [x] Prevent the user from entering more than one decimal separator in the bill amount text field
+* [x] Make the tip calculation accept region specific decimal separators and show the correct total amount
 
 ## Video Walkthrough 
 
