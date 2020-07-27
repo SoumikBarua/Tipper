@@ -20,8 +20,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let numberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
-        nf.minimumFractionDigits = 0
+        nf.minimumFractionDigits = 2
         nf.maximumFractionDigits = 2
+        nf.usesGroupingSeparator = true
+        nf.groupingSeparator = Locale.current.groupingSeparator
         return nf
     }()
     
@@ -105,22 +107,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tipPercentageLabel.text = "Tips (" + formattedPercentage + "%)"
         
         let localCurrency = Locale.current.currencySymbol
-        tipAmountLabel.text = localCurrency! + String(format: "%.2f", tip)
-        totalLabel.text = localCurrency! + String(format: "%.2f", total)
+        tipAmountLabel.text = localCurrency! + numberFormatter.string(from: tip as NSNumber)!
+        totalLabel.text = localCurrency! + numberFormatter.string(from: total as NSNumber)!
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Prevent entry of multiple decimal separators, ensure this based on locale-specific decimal separator
-        let currentLocale = Locale.current
-        let decimalSeparator = currentLocale.decimalSeparator ?? "."
-        
-        let existingTextHasDecimalSeparator = billAmountTextField.text?.range(of: decimalSeparator)
-        let replaceTextHasDecimalSeparator = string.range(of: decimalSeparator)
-        
-        if existingTextHasDecimalSeparator != nil, replaceTextHasDecimalSeparator != nil {
-            return false
+        // Prevent entry of leading zeros or leading decimal separators
+        if billAmountTextField.text == "" {
+            if string[string.startIndex] == "0" || string[string.startIndex] == Character(Locale.current.decimalSeparator!) {
+                return false
+            } else {
+                return true
+            }
         } else {
-            return true
+            // Prevent entry of multiple decimal separators, ensure this based on locale-specific decimal separator
+            // also, prevent entry of more than two digits after the decimal
+            
+            let currentLocale = Locale.current
+            let decimalSeparator = currentLocale.decimalSeparator ?? "."
+            
+            let existingTextHasDecimalSeparator = billAmountTextField.text?.range(of: decimalSeparator)
+            let replaceTextHasDecimalSeparator = string.range(of: decimalSeparator)
+            
+            let fractionalParts = billAmountTextField.text?.components(separatedBy: ".") ?? []
+            
+            if existingTextHasDecimalSeparator != nil, replaceTextHasDecimalSeparator != nil {
+                return false
+            } else if fractionalParts.count == 2 {
+                // when there is already two digits after decimal and another digit is about to be added
+                if fractionalParts[1].count == 2 && string.count == 1 {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return true
+            }
         }
     }
     

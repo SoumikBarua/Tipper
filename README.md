@@ -25,6 +25,7 @@ The following **additional** features are implemented:
 * [x] Using a slider to provide more flexibility in tip percentages compared to a segmented control
 * [x] Prevent the user from entering more than one decimal separator in the bill amount text field
 * [x] Make the tip calculation accept region specific decimal separators and show the correct total amount
+* [x] Prevent the user from entering the following: a leading zero, a leading decimal separator, and more than two digits after the decimal point
 
 ## Video Walkthrough 
 
