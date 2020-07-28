@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var tipPicker: UIPickerView!
+    @IBOutlet weak var darkModeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,21 @@ class SettingsViewController: UITableViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let boolean = UserDefaults.standard.string(forKey: "darkMode") {
+            if boolean == "true" {
+                enableDarkMode()
+                darkModeSwitch.isOn = true
+            } else {
+                enableLightMode()
+                darkModeSwitch.isOn = false
+            }
+        } else {
+            enableLightMode()
+            darkModeSwitch.isOn = false
+        }
+    }
+    
     // MARK: - Picker view data source methods
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -53,5 +69,29 @@ class SettingsViewController: UITableViewController, UIPickerViewDataSource, UIP
         UserDefaults.standard.set(String(row), forKey: "tipPicker")
         UserDefaults.standard.synchronize()
     }
+    
+    @IBAction func switchToggled(_ sender: Any) {
+        if darkModeSwitch.isOn {
+            UserDefaults.standard.set("true", forKey: "darkMode")
+            enableDarkMode()
+        } else {
+            UserDefaults.standard.set("false", forKey: "darkMode")
+            enableLightMode()
+        }
+        UserDefaults.standard.synchronize()
+    }
+    
+    func enableDarkMode() {
+        view.backgroundColor = UIColor(red: 0.29, green: 0.36, blue: 0.40, alpha: 1.00) //4A5B66
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.36, green: 0.44, blue: 0.48, alpha: 1.00) //5C707B
+        navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    func enableLightMode() {
+        view.backgroundColor = UIColor(red: 0.74, green: 0.79, blue: 0.82, alpha: 1.00) //BDCAD2
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.84, green: 0.88, blue: 0.90, alpha: 1.00) //D7E0E5
+        navigationController?.navigationBar.tintColor = UIColor.systemBlue
+    }
+    
 
 }

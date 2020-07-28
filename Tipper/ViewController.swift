@@ -10,13 +10,15 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var billLabel: UILabel!
     @IBOutlet weak var billAmountTextField: UITextField!
     @IBOutlet weak var tipPercentageLabel: UILabel!
     @IBOutlet weak var tipAmountLabel: UILabel!
     @IBOutlet weak var tipAmountSlider: UISlider!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalAmountLabel: UILabel!
     
-    var lastDefaultTip = "3"
+    var lastDefaultTip = "3" // Default tip starting at 18%, coming from picker values: 0 is 15, 1 is 16, ... 3 is 18 ...
     let numberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
@@ -36,14 +38,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Label & textfield alignments
         billAmountTextField.textAlignment = .right
         tipAmountLabel.textAlignment = .right
-        totalLabel.textAlignment = .right
+        totalAmountLabel.textAlignment = .right
         
         // keyboard type & delegate
         billAmountTextField.keyboardType = .decimalPad
         billAmountTextField.delegate = self
+        billAmountTextField.borderStyle = .none
         
         // perform loading here
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let boolean = UserDefaults.standard.string(forKey: "darkMode") {
+            if boolean == "true" {
+                enableDarkMode()
+            } else {
+                enableLightMode()
+            }
+        } else {
+            enableLightMode()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +123,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let localCurrency = Locale.current.currencySymbol
         tipAmountLabel.text = localCurrency! + numberFormatter.string(from: tip as NSNumber)!
-        totalLabel.text = localCurrency! + numberFormatter.string(from: total as NSNumber)!
+        totalAmountLabel.text = localCurrency! + numberFormatter.string(from: total as NSNumber)!
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -129,7 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let existingTextHasDecimalSeparator = billAmountTextField.text?.range(of: decimalSeparator)
             let replaceTextHasDecimalSeparator = string.range(of: decimalSeparator)
             
-            let fractionalParts = billAmountTextField.text?.components(separatedBy: ".") ?? []
+            let fractionalParts = billAmountTextField.text?.components(separatedBy: Locale.current.decimalSeparator!) ?? []
             
             if existingTextHasDecimalSeparator != nil, replaceTextHasDecimalSeparator != nil {
                 return false
@@ -164,6 +179,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 billAmountTextField.text = result
             }
         }
+    }
+    
+    func enableDarkMode() {
+        view.backgroundColor = UIColor(red: 0.29, green: 0.36, blue: 0.40, alpha: 1.00) //4A5B66
+        tipAmountSlider.minimumTrackTintColor = UIColor(red: 0.89, green: 0.69, blue: 0.32, alpha: 1.00) //E4B052
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.36, green: 0.44, blue: 0.48, alpha: 1.00) //5C707B
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        billLabel.textColor = UIColor.white
+        billAmountTextField.textColor = UIColor.white
+        tipPercentageLabel.textColor = UIColor.white
+        tipAmountLabel.textColor = UIColor.white
+        totalLabel.textColor = UIColor.white
+        totalAmountLabel.textColor = UIColor.white
+        
+    }
+    
+    func enableLightMode() {
+        view.backgroundColor = UIColor(red: 0.74, green: 0.79, blue: 0.82, alpha: 1.00) //BDCAD2
+        tipAmountSlider.minimumTrackTintColor = UIColor(red: 0.99, green: 0.97, blue: 0.72, alpha: 1.00) //FCF7B7
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.84, green: 0.88, blue: 0.90, alpha: 1.00) //D7E0E5
+        navigationController?.navigationBar.tintColor = UIColor.systemBlue
+        
+        billLabel.textColor = UIColor.black
+        billAmountTextField.textColor = UIColor.black
+        tipPercentageLabel.textColor = UIColor.black
+        tipAmountLabel.textColor = UIColor.black
+        totalLabel.textColor = UIColor.black
+        totalAmountLabel.textColor = UIColor.black
     }
     
 }

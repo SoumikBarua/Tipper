@@ -37,9 +37,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OSd-Qi-6W0">
-                                <rect key="frame" x="262" y="95" width="97" height="34"/>
+                                <rect key="frame" x="187" y="95" width="172" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="H7Q-lz-E5d"/>
@@ -83,10 +83,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billAmountTextField" destination="OSd-Qi-6W0" id="csT-7J-AoO"/>
+                        <outlet property="billLabel" destination="yaz-iF-66l" id="pop-Ph-VQg"/>
                         <outlet property="tipAmountLabel" destination="czh-lt-CXT" id="EbV-UN-smf"/>
                         <outlet property="tipAmountSlider" destination="eNu-4l-pKQ" id="ywa-61-69k"/>
                         <outlet property="tipPercentageLabel" destination="uJz-Nm-oBy" id="rwM-8A-grS"/>
-                        <outlet property="totalLabel" destination="0UA-oe-Phz" id="KDb-45-hB8"/>
+                        <outlet property="totalAmountLabel" destination="0UA-oe-Phz" id="qkR-Wi-iUO"/>
+                        <outlet property="totalLabel" destination="BTH-x6-JAk" id="IVL-bJ-TbW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -102,10 +104,11 @@
         <scene sceneID="9w0-ZX-VEi">
             <objects>
                 <tableViewController id="sgn-si-7ty" customClass="SettingsViewController" customModule="Tipper" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="90C-l2-v1I">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="90C-l2-v1I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" red="0.36078431370000003" green="0.43921568630000002" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <sections>
                             <tableViewSection id="iqy-aB-Mwj">
                                 <cells>
@@ -152,6 +155,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hda-HP-NJ3">
                                                     <rect key="frame" x="310" y="12" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchToggled:" destination="sgn-si-7ty" eventType="valueChanged" id="Rao-RJ-TwB"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -172,6 +178,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Hox-yc-apN"/>
                     <connections>
+                        <outlet property="darkModeSwitch" destination="hda-HP-NJ3" id="e4x-YV-BH0"/>
                         <outlet property="tipPicker" destination="LJk-T2-efU" id="eTg-8r-Oiz"/>
                     </connections>
                 </tableViewController>
@@ -187,6 +194,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZcP-Zg-KtU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.84313725490196079" green="0.8784313725490196" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
