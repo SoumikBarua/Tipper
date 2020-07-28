@@ -24,7 +24,7 @@ The following **additional** features are implemented:
 - [ ] List anything else that you can get done to improve the app functionality!
 * [x] Using a *slider* to provide more flexibility in tip percentages compared to a segmented control 
 * [x] Adding a *light/dark color theme* to the settings view. In viewWillAppear, update views with the correct theme colors
-* [x] Preventing the user from entering the following in the bill amount text field: more than one decimal separator, a leading zero, a leading decimal separator, and more than two digits after the decimal point
+* [x] Preventing the user from entering the following in the bill amount text field: more than one decimal separator, a leading zero (unless it's a fractional value less than 1), a leading decimal separator, and more than two digits after the decimal point
 
 ## Video Walkthrough 
 

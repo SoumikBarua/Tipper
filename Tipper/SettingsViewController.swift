@@ -56,7 +56,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDataSource, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 86
+        return 36
     }
     
     // MARK: - Picker view delegate methods

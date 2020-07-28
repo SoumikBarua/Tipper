@@ -127,11 +127,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Prevent entry of leading zeros or leading decimal separators
+        // Prevent entry of leading decimal separators
         if billAmountTextField.text == "" {
-            if string[string.startIndex] == "0" || string[string.startIndex] == Character(Locale.current.decimalSeparator!) {
+            if Character(string) == Character(Locale.current.decimalSeparator!) {
                 return false
             } else {
+                return true
+            }
+        } else if billAmountTextField.text == "0" {
+            // Prevent entry of leading zeros unless a decimal value less than 1
+            if string.count > 0 { // when a character is being inserted
+                if Character(string) != Character(Locale.current.decimalSeparator!) {
+                    return false
+                } else {
+                    return true
+                }
+            } else { // when a character is being deleted
                 return true
             }
         } else {
@@ -189,6 +200,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         billLabel.textColor = UIColor.white
         billAmountTextField.textColor = UIColor.white
+        billAmountTextField.tintColor = UIColor.white // for the caret color
         tipPercentageLabel.textColor = UIColor.white
         tipAmountLabel.textColor = UIColor.white
         totalLabel.textColor = UIColor.white
@@ -204,6 +216,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         billLabel.textColor = UIColor.black
         billAmountTextField.textColor = UIColor.black
+        billAmountTextField.tintColor = UIColor.black // for the caret color
         tipPercentageLabel.textColor = UIColor.black
         tipAmountLabel.textColor = UIColor.black
         totalLabel.textColor = UIColor.black
