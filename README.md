@@ -4,7 +4,7 @@
 
 Submitted by: **Soumik Barua**
 
-Time spent: **20+** hours spent in total
+Time spent: **40+** hours spent in total
 
 ## User Stories
 
@@ -22,10 +22,11 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
-* [x] Using a *slider* to provide more flexibility in tip percentages compared to a segmented control 
+* [x] Creating a *slider* to provide more flexibility in tip percentages compared to a segmented control 
 * [x] Making a *splitting* feature with a stepper to adjust how many ways to split
 * [x] Adding a *light/dark color theme* to the settings view. In viewWillAppear, update views with the correct theme colors
-* [x] Using locale-specific *decimal separator* in labels and updating any decimal separator in bill amount textfield for app restarts (< 10 mins) to reflect any region changes
+* [x] Using locale-specific *decimal separator* in labels and updating any decimal separator in bill amount textfield to reflect any region changes
+* [x] Making a *LaunchScreen* for a smoother user experience & adding app icons for a more polished look
 * [x] Preventing the user from entering the following in the bill amount text field: more than one decimal separator, a leading zero (unless it's a fractional value less than 1), a leading decimal separator, and more than two digits after the decimal point
 
 ## Video Walkthrough 
@@ -40,6 +41,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 1. It was tricky to figure out where to call UserDefaults to save the bill amount in order to remember it for restarts <10 mins.
 2. The main screen updated the slider after coming back from the settings screen despite no changes in the default tip percentage. So I kept track of the default tip with a variable in main VC to see if it has changed from the last time.
+3. The most challenging part was the UI animation for the bill splitting feature.
 
 ## License
 
