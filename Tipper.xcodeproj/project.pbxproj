@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		323B386224C7CD62001D1435 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323B386124C7CD62001D1435 /* SettingsViewController.swift */; };
+		32534A4324D1208700D10343 /* SplitterLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32534A4224D1208700D10343 /* SplitterLauncher.swift */; };
+		32534A4524D14A8600D10343 /* SplitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32534A4424D14A8600D10343 /* SplitterViewController.swift */; };
 		32A626F624BE519E00EFC26A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F524BE519E00EFC26A /* AppDelegate.swift */; };
 		32A626F824BE519E00EFC26A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F724BE519E00EFC26A /* SceneDelegate.swift */; };
 		32A626FA24BE519E00EFC26A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626F924BE519E00EFC26A /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		323B386124C7CD62001D1435 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		32534A4224D1208700D10343 /* SplitterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterLauncher.swift; sourceTree = "<group>"; };
+		32534A4424D14A8600D10343 /* SplitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterViewController.swift; sourceTree = "<group>"; };
 		32A626F224BE519E00EFC26A /* Tipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A626F524BE519E00EFC26A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32A626F724BE519E00EFC26A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				32A6270024BE51A000EFC26A /* LaunchScreen.storyboard */,
 				32A6270324BE51A000EFC26A /* Info.plist */,
 				323B386124C7CD62001D1435 /* SettingsViewController.swift */,
+				32534A4224D1208700D10343 /* SplitterLauncher.swift */,
+				32534A4424D14A8600D10343 /* SplitterViewController.swift */,
 			);
 			path = Tipper;
 			sourceTree = "<group>";
@@ -141,10 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32534A4324D1208700D10343 /* SplitterLauncher.swift in Sources */,
 				32A626FA24BE519E00EFC26A /* ViewController.swift in Sources */,
 				32A626F624BE519E00EFC26A /* AppDelegate.swift in Sources */,
 				32A626F824BE519E00EFC26A /* SceneDelegate.swift in Sources */,
 				323B386224C7CD62001D1435 /* SettingsViewController.swift in Sources */,
+				32534A4524D14A8600D10343 /* SplitterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

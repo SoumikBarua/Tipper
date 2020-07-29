@@ -14,7 +14,7 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [x] Settings page to change the default tip percentage
-* [ ] UI animations
+* [x] UI animations (bill splitter slides in/out)
 * [x] Remembering the bill amount across app restarts (if <10mins)
 * [x] Using locale-specific currency and currency thousands separators (see tip amount & total amount labels)
 * [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
@@ -23,7 +23,9 @@ The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
 * [x] Using a *slider* to provide more flexibility in tip percentages compared to a segmented control 
+* [x] Making a *splitting* feature with a stepper to adjust how many ways to split
 * [x] Adding a *light/dark color theme* to the settings view. In viewWillAppear, update views with the correct theme colors
+* [x] Using locale-specific *decimal separator* in labels and updating any decimal separator in bill amount textfield for app restarts (< 10 mins) to reflect any region changes
 * [x] Preventing the user from entering the following in the bill amount text field: more than one decimal separator, a leading zero (unless it's a fractional value less than 1), a leading decimal separator, and more than two digits after the decimal point
 
 ## Video Walkthrough 

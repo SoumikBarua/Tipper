@@ -17,6 +17,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tipAmountSlider: UISlider!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var splitBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var containerView: UIView!
     
     var lastDefaultTip = "3" // Default tip starting at 18%, coming from picker values: 0 is 15, 1 is 16, ... 3 is 18 ...
     let numberFormatter: NumberFormatter = {
@@ -28,6 +30,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         nf.groupingSeparator = Locale.current.groupingSeparator
         return nf
     }()
+    let splitterLauncher = SplitterLauncher()
+    var containerVisible = false
+    var splitterController: SplitterViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // perform loading here
         loadData()
+        
+        // hide it
+        containerView.frame = CGRect(x: 0, y: view.frame.height, width: containerView.frame.width, height: containerView.frame.height)
+        //containerView.removeFromSuperview()
+        splitterLauncher.containerView = self.containerView
+        
+        splitterController = self.children[0] as? SplitterViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +88,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func onTap(_ sender: Any) {
         // dismiss keyboard when background tapped
-        billAmountTextField.resignFirstResponder()
+        if billAmountTextField.isFirstResponder {
+            billAmountTextField.resignFirstResponder()
+            containerVisible = false
+        } else {
+            splitterLauncher.dismissSplitView()
+            containerVisible = false
+        }
+        
     }
     @IBAction func calculateTip(_ sender: Any) {
         updateLabels()
@@ -124,6 +143,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let localCurrency = Locale.current.currencySymbol
         tipAmountLabel.text = localCurrency! + numberFormatter.string(from: tip as NSNumber)!
         totalAmountLabel.text = localCurrency! + numberFormatter.string(from: total as NSNumber)!
+        
+        // Pass it to splitter
+        splitterController?.totalAmount = total
+        splitterController?.updateAmountLabels()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -188,6 +211,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 billAmountTextField.text = result
+                // since a text is in bill text field, update the labels as well
+                updateLabels()
             }
         }
     }
@@ -196,7 +221,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor(red: 0.29, green: 0.36, blue: 0.40, alpha: 1.00) //4A5B66
         tipAmountSlider.minimumTrackTintColor = UIColor(red: 0.89, green: 0.69, blue: 0.32, alpha: 1.00) //E4B052
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.36, green: 0.44, blue: 0.48, alpha: 1.00) //5C707B
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white // this will automatically apply to bar button items
         
         billLabel.textColor = UIColor.white
         billAmountTextField.textColor = UIColor.white
@@ -205,7 +230,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tipAmountLabel.textColor = UIColor.white
         totalLabel.textColor = UIColor.white
         totalAmountLabel.textColor = UIColor.white
-        
     }
     
     func enableLightMode() {
@@ -221,6 +245,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tipAmountLabel.textColor = UIColor.black
         totalLabel.textColor = UIColor.black
         totalAmountLabel.textColor = UIColor.black
+    }
+    
+    // MARK: - Split functions
+    // Bring up the bill split view
+    @IBAction func showSplitView(_ sender: Any) {
+        if billAmountTextField.isFirstResponder {
+            billAmountTextField.resignFirstResponder()
+        }
+        splitterLauncher.showSplitView()
+        containerVisible = true
+    }
+    @IBAction func didBeginEditing(_ sender: Any) {
+        if containerVisible {
+            splitterLauncher.dismissSplitView()
+            containerVisible = false
+        }
     }
     
 }
