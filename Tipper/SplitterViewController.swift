@@ -38,6 +38,9 @@ class SplitterViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // make table view unscrollable
+        tableView.isScrollEnabled = false
     }
     
     @IBAction func stepperTapped(_ sender: Any) {
